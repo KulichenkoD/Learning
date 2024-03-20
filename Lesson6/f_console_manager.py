@@ -8,7 +8,7 @@ def file_copy(file1, file2):
     if os.path.exists(f'{file1}'):
         shutil.copy(file1, file2)
 
-if '__name__' == '__main__':
+if __name__ == '__main__':
     while True:
         print('1. создать папку')
         print('2. удалить (файл/папку)')
@@ -37,8 +37,7 @@ if '__name__' == '__main__':
         elif choice == '3':
             file1 = input('Имя файла: ')
             file2 = input('Новое имя файла: ')
-            if os.path.exists(f'{file1}'):
-                shutil.copy(file1, file2)
+            file_copy(file1, file2)
         elif choice == '4':
             print(os.listdir())
         elif choice == '5':
