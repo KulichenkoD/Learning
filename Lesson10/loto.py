@@ -116,8 +116,6 @@ class Cart:
             except ValueError:
                 pass
 
-
-
 class Player:
     def __init__(self, name, bot=False):
         self.cart = Cart()
