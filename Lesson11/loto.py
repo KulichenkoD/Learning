@@ -100,6 +100,18 @@ class Cart:
         s += ' ' + '-' * 27 + '\n'
         return s.replace('*', ' ')
 
+    def __eq__(self, other):
+        if isinstance(other, Cart):
+            cart1 = numbers_in_cart(self.cart)
+            cart2 = numbers_in_cart(other.cart)
+            return len(cart1) == len(cart2) and cart1 == cart2
+
+    def __ne__(self, other):
+        if isinstance(other, Cart):
+            cart1 = numbers_in_cart(self.cart)
+            cart2 = numbers_in_cart(other.cart)
+            return len(cart1) != len(cart2) or cart1 != cart2
+
     @property
     def is_empty(self):
         return len(numbers_in_cart(self.cart)) == 0
@@ -127,6 +139,14 @@ class Player:
         s = f'''Имя игрока: {self.name}
         Это - {'бот' if self.bot else 'человек '}'''
         return s
+
+    def __eq__(self, other):
+        if isinstance(other, Player):
+            return self.name == other.name and (self.bot == other.bot)
+
+    def __ne__(self, other):
+        if isinstance(other, Player):
+            return not (self.name == other.name and (self.bot == other.bot))
 
     def step(self, num):
         print(f'Карта игрока: {self.name}')
@@ -170,6 +190,14 @@ class Game:
         {str(self.bot)}
         -----------------'''
         return s
+
+    def __eq__(self, other):
+        if isinstance(other, Game):
+            return self.bot == other.bot and self.player == other.player
+
+    def __ne__(self, other):
+        if isinstance(other, Game):
+            return not (self.bot == other.bot and self.player == other.player)
 
     def start(self):
 
